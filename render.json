@@ -1,0 +1,15 @@
+{
+  "services": [
+    {
+      "name": "hono-proxy",
+      "type": "web",
+      "env": "node",
+      "plan": "free",
+      "buildCommand": "npm install",
+      "startCommand": "node index.js",
+      "envVars": [
+        { "key": "PORT", "value": "3000" }
+      ]
+    }
+  ]
+}

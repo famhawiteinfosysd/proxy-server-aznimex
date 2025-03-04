@@ -1,9 +1,9 @@
-//install wrangle and init a project to initialize the worker
-
-//add the code given below in index.js
-
 import { Hono } from 'hono';
 import { cors } from 'hono/cors';
+import { serve } from '@hono/node-server';
+import dotenv from 'dotenv';
+
+dotenv.config();
 
 const app = new Hono();
 
@@ -43,11 +43,7 @@ app.all('*', async (c) => {
 	});
 });
 
-export default app;
-
-// add name of your project (can be any) in wrangler.toml file
-
-//run npx wrangler publish 
-// your reversed proxy server is now hosted
-// to use the proxy make request like this structure given below
-//https://workername.workers.dev/?url=https://<website_name>
+const port = process.env.PORT || 3000;
+serve(app, (info) => {
+	console.log(`🚀 Server is running on http://localhost:${port}`);
+});
